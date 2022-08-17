@@ -57,6 +57,12 @@ describe("Gilded Rose", function() {
     expect(itemsOneDay[0].quality).toBe(2);
   });
 
+  it("SellIn less than 0, quality should increase twice", function() {
+    const gildedRoseOneDay = new Shop([new Item("Aged Brie", -1, 1)]);
+    const itemsOneDay = gildedRoseOneDay.updateQuality();
+    expect(itemsOneDay[0].quality).toBe(3);
+  });
+
   it("Quality of any product can not be more than 50", function() {
     const gildedRose = new Shop([new Item("Aged Brie", 2, 50)]);
     const items = gildedRose.updateQuality();
