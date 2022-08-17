@@ -54,16 +54,13 @@ describe("Gilded Rose", function() {
   it("Quality of aged Brie increase one more as the days pass way", function() {
     const gildedRoseOneDay = new Shop([new Item("Aged Brie", 1, 1)]);
     const itemsOneDay = gildedRoseOneDay.updateQuality();
-    const gildedRoseFourDays = new Shop([new Item("Aged Brie", 4, 1)]);
-    const itemsFourDays = gildedRoseFourDays.updateQuality();
     expect(itemsOneDay[0].quality).toBe(2);
-    expect(itemsFourDays[0].quality).toBe(2);
   });
 
   it("Quality of any product can not be more than 50", function() {
-    const gildedRose = new Shop([new Item("foo", 0, 70)]);
+    const gildedRose = new Shop([new Item("Aged Brie", 2, 50)]);
     const items = gildedRose.updateQuality();
-    expect(items[0].quality).toBeLessThan(50);
+    expect(items[0].quality).toBe(50);
   });
 
   it("Quality of Sulfuras do not change for any sellIn value", function() {
@@ -72,14 +69,31 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toBe(7);
   });
 
-  it("Quality of Backstage passes increase as the days pass way", function() {
+  it("SellIn of Sulfuras does not change", function() {
+    const gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", 5, 7)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].sellIn).toBe(5);
+  });
+
+  it("Quality of Backstage passes increase as the days pass way [1]", function() {
     const backstage = "Backstage passes to a TAFKAL80ETC concert";
     const gildedRoseTenDay = new Shop([new Item(backstage, 10, 1)]);
     const itemsTenDay = gildedRoseTenDay.updateQuality();
+    expect(itemsTenDay[0].quality).toBe(3);
+  });
+
+  it("Quality of Backstage passes increase as the days pass way [2]", function() {
+    const backstage = "Backstage passes to a TAFKAL80ETC concert";
     const gildedRoseFiveDays = new Shop([new Item(backstage, 5, 1)]);
     const itemsFiveDays = gildedRoseFiveDays.updateQuality();
-    expect(itemsTenDay[0].quality).toBe(3);
     expect(itemsFiveDays[0].quality).toBe(4);
+  });
+
+  it("Quality of Backstage passes increase as the days pass way [3]", function() {
+    const backstage = "Backstage passes to a TAFKAL80ETC concert";
+    const gildedRoseFiveDays = new Shop([new Item(backstage, 0, 10)]);
+    const itemsFiveDays = gildedRoseFiveDays.updateQuality();
+    expect(itemsFiveDays[0].quality).toBe(0);
   });
 
 });
