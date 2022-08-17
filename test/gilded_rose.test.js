@@ -81,6 +81,12 @@ describe("Gilded Rose", function() {
     expect(items[0].sellIn).toBe(5);
   });
 
+  it("SellIn of Aged Brie reduce by one", function() {
+    const gildedRose = new Shop([new Item("Aged Brie", 5, 7)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].sellIn).toBe(4);
+  });
+
   it("Quality of Backstage passes increase as the days pass way [1]", function() {
     const backstage = "Backstage passes to a TAFKAL80ETC concert";
     const gildedRoseTenDay = new Shop([new Item(backstage, 10, 1)]);

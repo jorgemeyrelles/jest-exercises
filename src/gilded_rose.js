@@ -14,8 +14,14 @@ class Shop {
     for (const item of this.items) {
       switch (item.name) {
         case 'Aged Brie':
-          
-          break;
+          if (item.quality < 50) {
+            item.quality += 1;
+          }
+          item.sellIn -= 1;
+          if (item.quality < 50 && item.sellIn < 0) {
+            item.quality += 1;
+          }
+          continue;
       }
       if (item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert') {
         if (item.quality > 0) {
