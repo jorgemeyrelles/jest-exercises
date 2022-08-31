@@ -1,3 +1,7 @@
+`Objetivo`: Exercitar testes unitários com jest a partir de desafio do Kata
+
+`Professor`: [Mateus Resende](https://github.com/m-resende)
+
 # Especificações de Requisitos de Gilded Rose
 
 Bem-vindo ao time Gilded Rose. Como você deve saber, nós somos uma pequena pousada estrategicamente localizada em uma prestigiosa cidade, atendida pelo amigavel atendente Allison. Além de ser uma pousada, nós também compramos e vendemos as mercadorias de melhor qualidade. Infelizmente nossas mercadorias vão perdendo a qualidade conforme chegam próximo sua data de venda.
