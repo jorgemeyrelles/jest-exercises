@@ -1,84 +1,36 @@
-class Item {
-  constructor(name, sellIn, quality){
-    this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
-  }
-}
+const { AgedBrie, Backstage, Sulfuras, Default } = require('./classes');
 
 class Shop {
   constructor(items=[]){
     this.items = items;
   }
 
-  updateAgedBrie(item) {
-    if (item.quality < 50) {
-      item.quality += 1;
-    }
-    item.sellIn -= 1;
-    if (item.sellIn < 0 && item.quality < 50) {
-      item.quality += 1;
-    }
-    return item;
-  }
-
-  updateBackstage(item) {
-    if (item.quality < 50) {
-      item.quality += 1;
-    }
-    if (item.sellIn < 11 && item.quality < 50) {
-      item.quality += 1;
-    }
-    if (item.sellIn < 6 && item.quality < 50) {
-      item.quality += 1;
-    }
-    item.sellIn -= 1;
-    if (item.sellIn < 0) {
-      item.quality = item.quality - item.quality;
-    }
-    return item;
-  }
-
-  updateDefault(item) {
-    if (item.quality > 0 && item.quality < 50) {
-      item.quality -= 1;
-    }
-    item.sellIn -= 1;
-    if (item.sellIn < 0 && item.quality > 0) {
-      item.quality -= 1;
-    } else if (item.sellIn > 0 && item.quality < 50) {
-      item.quality += 1;
-    }
-    return item;
-  }
-
-  updateSulfuras(item) {
-    return item;
-  }
-
   updateQuality() {
     for (let item of this.items) {
+      const { name, sellIn, quality } = item;
       switch (item.name) {
         case 'Aged Brie':
-          item = this.updateAgedBrie(item);
-          break;
+          const agedBrie = new AgedBrie(name, sellIn, quality);
+          item = agedBrie.update();
+          return [item];
         case 'Backstage passes to a TAFKAL80ETC concert':
-          item = this.updateBackstage(item);
-          break;
+          const backstage = new Backstage(name, sellIn, quality);  
+          item = backstage.update();
+          return [item];
         case 'Sulfuras, Hand of Ragnaros':
-          item = this.updateSulfuras(item);
-          break;
+          const sulfuras = new Sulfuras(name, sellIn, quality);
+          item = sulfuras.update();
+          return [item];
         default:
-          item = this.updateDefault(item);
-          break;
+          const def = new Default(name, sellIn, quality);
+          item = def.update();
+          return [item];
       }
     }
-
     return this.items;
   }
 }
 
 module.exports = {
-  Item,
-  Shop
+  Shop,
 }
