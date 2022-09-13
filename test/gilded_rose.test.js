@@ -108,5 +108,13 @@ describe("Gilded Rose", function() {
     const itemsFiveDays = gildedRoseFiveDays.updateQuality();
     expect(itemsFiveDays[0].quality).toBe(0);
   });
+
+  it("Tow items", function() {
+    const backstage = "Backstage passes to a TAFKAL80ETC concert";
+    const gildedRoseFiveDays = new Shop([new Item(backstage, 0, 10), new Item(backstage, 5, 1)]);
+    const itemsFiveDays = gildedRoseFiveDays.updateQuality();
+    expect(itemsFiveDays[0].quality).toBe(0);
+    expect(itemsFiveDays[1].quality).toBe(4);
+  });
   
 });
