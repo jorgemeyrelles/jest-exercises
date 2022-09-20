@@ -1,10 +1,4 @@
-const { AgedBrie, Backstage, Sulfuras, Default } = require('./classes');
-
-const ITEM_MAP = {
-  'Aged Brie': AgedBrie,
-  'Backstage passes to a TAFKAL80ETC concert': Backstage,
-  'Sulfuras, Hand of Ragnaros': Sulfuras
-};
+const ItemFactory = require('./item_factory');
 
 class Shop {
   constructor(items=[]){
@@ -14,13 +8,9 @@ class Shop {
   updateQuality() {
     return this.items.map((item) => {
       const { name, sellIn, quality } = item;
-      if (ITEM_MAP.hasOwnProperty(name)) {
-        const specialItem = new ITEM_MAP[name](name, sellIn, quality);
-        return specialItem.update();
-      }
+      const specialItem = ItemFactory.buildItem( name, sellIn, quality );
 
-      const def = new Default(name, sellIn, quality);
-      return def.update();
+      return specialItem.update();
     });
   }
 }
