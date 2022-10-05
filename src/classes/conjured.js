@@ -8,6 +8,7 @@ class Conjured extends Item {
     if (this.sellIn < 0 && this.quality < 50) {
       this.quality -= 2;
     }
+    console.log(this);
     return this;
   }
 }

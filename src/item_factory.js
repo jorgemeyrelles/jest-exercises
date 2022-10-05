@@ -10,13 +10,10 @@ const ITEM_MAP = {
 class ItemFactory {
   static buildItem(name, sellIn, quality) {
     let item = new Default(name, sellIn, quality);
-    const conjured = (name).toLowerCase().match('conjured');
+    const nameMatched = (name).toLowerCase().match('conjured') || [name];
 
-    if (ITEM_MAP.hasOwnProperty(name)) {
-      item = new ITEM_MAP[name](name, sellIn, quality);
-    }
-    if (conjured) {
-      item = new ITEM_MAP[conjured[0]](name, sellIn, quality);
+    if (ITEM_MAP.hasOwnProperty(nameMatched[0])) {
+      item = new ITEM_MAP[nameMatched[0]](name, sellIn, quality);
     }
 
     return item;
