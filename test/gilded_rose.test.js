@@ -116,5 +116,19 @@ describe("Gilded Rose", function() {
     expect(itemsFiveDays[0].quality).toBe(0);
     expect(itemsFiveDays[1].quality).toBe(4);
   });
+
+  it("Conjured decrease twice", function() {
+    const backstage = "Conjured Item";
+    const gildedRoseFiveDays = new Shop([new Item(backstage, 0, 10)]);
+    const items = gildedRoseFiveDays.updateQuality();
+    expect(items[0].quality).toBe(8);
+  });
+
+  it("Conjured decrease four times if sellIn is negative", function() {
+    const backstage = "Conjured Item";
+    const gildedRoseFiveDays = new Shop([new Item(backstage, -1, 10)]);
+    const items = gildedRoseFiveDays.updateQuality();
+    expect(items[0].quality).toBe(6);
+  });
   
 });

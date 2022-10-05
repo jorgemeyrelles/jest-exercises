@@ -3,6 +3,7 @@ const { AgedBrie } = require('./aged_brie');
 const { Backstage } = require('./backstage');
 const { Default } = require('./default');
 const { Sulfuras } = require('./sulfuras');
+const { Conjured } = require('./conjured');
 
 module.exports = {
   Item,
@@ -10,4 +11,5 @@ module.exports = {
   Backstage,
   Default,
   Sulfuras,
+  Conjured,
 };
